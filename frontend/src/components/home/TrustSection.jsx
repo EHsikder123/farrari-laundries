@@ -2,16 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Star, Gem, Sparkles, Briefcase, Clock, Award, ArrowRight } from 'lucide-react';
 import { Button } from '../ui/button';
-import { aboutData } from '../../data/mockData';
 
-const iconMap = {
-  star: Star,
-  gem: Gem,
-  sparkles: Sparkles,
-  briefcase: Briefcase,
-  clock: Clock,
-  award: Award,
-};
+const values = [
+  { id: 1, title: "Top Quality", Icon: Star },
+  { id: 2, title: "Value", Icon: Gem },
+  { id: 3, title: "Cleanliness", Icon: Sparkles },
+  { id: 4, title: "Professionalism", Icon: Briefcase },
+  { id: 5, title: "Convenience", Icon: Clock },
+  { id: 6, title: "Best Service", Icon: Award }
+];
 
 const TrustSection = () => {
   return (
@@ -30,25 +29,22 @@ const TrustSection = () => {
           
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              {aboutData.title}
+              Trust the Expert
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              {aboutData.description}
+              Farrari Laundries aim has always been to provide 5 star premium dry cleaning and laundry services to expat and local populations of Kuwait.
             </p>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-              {aboutData.values.map((value) => {
-                const IconComponent = iconMap[value.icon] || Star;
-                return (
-                  <div
-                    key={value.id}
-                    className="bg-red-50 rounded-xl p-4 text-center hover:bg-red-100 transition-colors duration-300 hover:scale-105 transform"
-                  >
-                    <IconComponent className="w-8 h-8 text-red-600 mx-auto mb-2" />
-                    <span className="text-sm font-medium text-gray-800">{value.title}</span>
-                  </div>
-                );
-              })}
+              {values.map((value) => (
+                <div
+                  key={value.id}
+                  className="bg-red-50 rounded-xl p-4 text-center hover:bg-red-100 transition-colors duration-300 hover:scale-105 transform"
+                >
+                  <value.Icon className="w-8 h-8 text-red-600 mx-auto mb-2" />
+                  <span className="text-sm font-medium text-gray-800">{value.title}</span>
+                </div>
+              ))}
             </div>
 
             <Link to="/about">

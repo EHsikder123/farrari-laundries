@@ -3,41 +3,40 @@ import { Star, Gem, Sparkles, Briefcase, Clock, Award, Users, Truck, Building, C
 import { Card, CardContent } from '../components/ui/card';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
-import { aboutData, appStats } from '../data/mockData';
 
-const iconMap = {
-  star: Star,
-  gem: Gem,
-  sparkles: Sparkles,
-  briefcase: Briefcase,
-  clock: Clock,
-  award: Award,
-};
+const values = [
+  { id: 1, title: "Top Quality", Icon: Star },
+  { id: 2, title: "Value", Icon: Gem },
+  { id: 3, title: "Cleanliness", Icon: Sparkles },
+  { id: 4, title: "Professionalism", Icon: Briefcase },
+  { id: 5, title: "Convenience", Icon: Clock },
+  { id: 6, title: "Best Service", Icon: Award }
+];
+
+const features = [
+  {
+    Icon: Users,
+    title: "Expert Team",
+    description: "Our skilled professionals have years of experience in garment care."
+  },
+  {
+    Icon: Truck,
+    title: "Free Delivery",
+    description: "Convenient pickup and delivery service at your doorstep."
+  },
+  {
+    Icon: Building,
+    title: "Modern Facility",
+    description: "State-of-the-art equipment for superior cleaning results."
+  },
+  {
+    Icon: CheckCircle,
+    title: "Quality Guaranteed",
+    description: "100% satisfaction guaranteed on all our services."
+  }
+];
 
 const AboutPage = () => {
-  const features = [
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: "Expert Team",
-      description: "Our skilled professionals have years of experience in garment care."
-    },
-    {
-      icon: <Truck className="w-8 h-8" />,
-      title: "Free Delivery",
-      description: "Convenient pickup and delivery service at your doorstep."
-    },
-    {
-      icon: <Building className="w-8 h-8" />,
-      title: "Modern Facility",
-      description: "State-of-the-art equipment for superior cleaning results."
-    },
-    {
-      icon: <CheckCircle className="w-8 h-8" />,
-      title: "Quality Guaranteed",
-      description: "100% satisfaction guaranteed on all our services."
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -50,7 +49,7 @@ const AboutPage = () => {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
               About Farrari Laundries
             </h1>
             <p className="text-xl text-white/90">
@@ -76,28 +75,25 @@ const AboutPage = () => {
 
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                {aboutData.title}
+                Trust the Expert
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                {aboutData.description}
+                Farrari Laundries aim has always been to provide 5 star premium dry cleaning and laundry services to expat and local populations of Kuwait.
               </p>
               <p className="text-gray-600 mb-8">
                 We use fully automatic state-of-the-art washing and dry cleaning systems with automatic dosing units. Our brand is known for its use of mild chemicals, the best spotting agents in the industry for the best treatment of fragile expensive fibers and textiles.
               </p>
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {aboutData.values.map((value) => {
-                  const IconComponent = iconMap[value.icon] || Star;
-                  return (
-                    <div
-                      key={value.id}
-                      className="bg-red-50 rounded-xl p-4 text-center hover:bg-red-100 transition-all duration-300 hover:scale-105"
-                    >
-                      <IconComponent className="w-8 h-8 text-red-600 mx-auto mb-2" />
-                      <span className="text-sm font-medium text-gray-800">{value.title}</span>
-                    </div>
-                  );
-                })}
+                {values.map((value) => (
+                  <div
+                    key={value.id}
+                    className="bg-red-50 rounded-xl p-4 text-center hover:bg-red-100 transition-all duration-300 hover:scale-105"
+                  >
+                    <value.Icon className="w-8 h-8 text-red-600 mx-auto mb-2" />
+                    <span className="text-sm font-medium text-gray-800">{value.title}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -120,7 +116,7 @@ const AboutPage = () => {
               >
                 <CardContent className="p-6 text-center">
                   <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4 text-red-600">
-                    {feature.icon}
+                    <feature.Icon className="w-8 h-8" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
                   <p className="text-gray-600 text-sm">{feature.description}</p>
@@ -136,7 +132,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center text-white">
             <div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">{appStats.users.toLocaleString()}+</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">9,984+</div>
               <div className="text-white/80">Happy Customers</div>
             </div>
             <div>
@@ -148,7 +144,7 @@ const AboutPage = () => {
               <div className="text-white/80">Services</div>
             </div>
             <div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">{appStats.ratings}</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">4.5</div>
               <div className="text-white/80">Star Rating</div>
             </div>
           </div>

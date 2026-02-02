@@ -1,40 +1,8 @@
 import React from 'react';
-import { Star, Gem, Sparkles, Briefcase, Clock, Award, Users, Truck, Building, CheckCircle } from 'lucide-react';
+import { Star, Users, Truck, Building, CheckCircle } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
-
-const values = [
-  { id: 1, title: "Top Quality", Icon: Star },
-  { id: 2, title: "Value", Icon: Gem },
-  { id: 3, title: "Cleanliness", Icon: Sparkles },
-  { id: 4, title: "Professionalism", Icon: Briefcase },
-  { id: 5, title: "Convenience", Icon: Clock },
-  { id: 6, title: "Best Service", Icon: Award }
-];
-
-const features = [
-  {
-    Icon: Users,
-    title: "Expert Team",
-    description: "Our skilled professionals have years of experience in garment care."
-  },
-  {
-    Icon: Truck,
-    title: "Free Delivery",
-    description: "Convenient pickup and delivery service at your doorstep."
-  },
-  {
-    Icon: Building,
-    title: "Modern Facility",
-    description: "State-of-the-art equipment for superior cleaning results."
-  },
-  {
-    Icon: CheckCircle,
-    title: "Quality Guaranteed",
-    description: "100% satisfaction guaranteed on all our services."
-  }
-];
 
 const AboutPage = () => {
   return (
@@ -59,7 +27,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Trust the Expert Section */}
+      {/* Trust Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -84,23 +52,26 @@ const AboutPage = () => {
                 We use fully automatic state-of-the-art washing and dry cleaning systems with automatic dosing units. Our brand is known for its use of mild chemicals, the best spotting agents in the industry for the best treatment of fragile expensive fibers and textiles.
               </p>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {values.map((value) => (
-                  <div
-                    key={value.id}
-                    className="bg-red-50 rounded-xl p-4 text-center hover:bg-red-100 transition-all duration-300 hover:scale-105"
-                  >
-                    <value.Icon className="w-8 h-8 text-red-600 mx-auto mb-2" />
-                    <span className="text-sm font-medium text-gray-800">{value.title}</span>
-                  </div>
-                ))}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="bg-red-50 rounded-xl p-4 text-center hover:bg-red-100 transition-all">
+                  <Star className="w-8 h-8 text-red-600 mx-auto mb-2" />
+                  <span className="text-sm font-medium text-gray-800">Top Quality</span>
+                </div>
+                <div className="bg-red-50 rounded-xl p-4 text-center hover:bg-red-100 transition-all">
+                  <CheckCircle className="w-8 h-8 text-red-600 mx-auto mb-2" />
+                  <span className="text-sm font-medium text-gray-800">Cleanliness</span>
+                </div>
+                <div className="bg-red-50 rounded-xl p-4 text-center hover:bg-red-100 transition-all">
+                  <Truck className="w-8 h-8 text-red-600 mx-auto mb-2" />
+                  <span className="text-sm font-medium text-gray-800">Convenience</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Features */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -109,25 +80,47 @@ const AboutPage = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <Card
-                key={index}
-                className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-              >
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4 text-red-600">
-                    <feature.Icon className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-red-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Expert Team</h3>
+                <p className="text-gray-600 text-sm">Our skilled professionals have years of experience in garment care.</p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Truck className="w-8 h-8 text-red-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Free Delivery</h3>
+                <p className="text-gray-600 text-sm">Convenient pickup and delivery service at your doorstep.</p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Building className="w-8 h-8 text-red-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Modern Facility</h3>
+                <p className="text-gray-600 text-sm">State-of-the-art equipment for superior cleaning results.</p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-red-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Quality Guaranteed</h3>
+                <p className="text-gray-600 text-sm">100% satisfaction guaranteed on all our services.</p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats */}
       <section className="py-20 bg-gradient-to-br from-red-600 to-red-700">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center text-white">
@@ -163,7 +156,6 @@ const AboutPage = () => {
                 </p>
               </CardContent>
             </Card>
-
             <Card className="border-0 shadow-xl bg-gradient-to-br from-red-50 to-white">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
@@ -176,7 +168,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Image Gallery */}
+      {/* Gallery */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">

@@ -1,9 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Gift, Percent, CreditCard, Award } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
-import { businessInfo, appStats, appBenefits } from '../../data/mockData';
 
-const AnimatedCounter = ({ end, duration = 2000, suffix = '' }) => {
+const businessInfo = {
+  appLink: "https://play.google.com/store/apps/details?id=com.cleancloudapp.farrarilaundries"
+};
+
+const appStats = {
+  users: 9984,
+  downloads: 2000,
+  ratings: 4.5
+};
+
+const appBenefits = [
+  { id: 1, title: "Gift", description: "Instant gift for your family and friends from our app.", Icon: Gift },
+  { id: 2, title: "Promos & Discounts", description: "You can find exclusive deals and discounts in our app.", Icon: Percent },
+  { id: 3, title: "Cashless Payment", description: "Pay via credit/debit card through our app.", Icon: CreditCard },
+  { id: 4, title: "Rewards", description: "Get rewarded for every friend you refer.", Icon: Award }
+];
+
+const AnimatedCounter = ({ end, duration = 2000 }) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
 
@@ -40,16 +56,9 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = '' }) => {
 
   return (
     <span id={`counter-${end}`}>
-      {count.toLocaleString()}{suffix}
+      {count.toLocaleString()}
     </span>
   );
-};
-
-const iconMap = {
-  gift: Gift,
-  percent: Percent,
-  'credit-card': CreditCard,
-  award: Award,
 };
 
 const AppSection = () => {
@@ -119,23 +128,20 @@ const AppSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Our Apps Benefit</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {appBenefits.map((benefit, index) => {
-              const IconComponent = iconMap[benefit.icon] || Gift;
-              return (
-                <Card
-                  key={benefit.id}
-                  className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white"
-                >
-                  <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <IconComponent className="w-8 h-8 text-red-600" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
-                    <p className="text-gray-600 text-sm">{benefit.description}</p>
-                  </CardContent>
-                </Card>
-              );
-            })}
+            {appBenefits.map((benefit) => (
+              <Card
+                key={benefit.id}
+                className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white"
+              >
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <benefit.Icon className="w-8 h-8 text-red-600" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
+                  <p className="text-gray-600 text-sm">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

@@ -3,23 +3,25 @@ import { useLocation } from 'react-router-dom';
 import { Phone, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
-import { services, businessInfo } from '../data/mockData';
+import { serviceCategories, pricingData, businessInfo } from '../data/mockData';
+import { getAppLink } from '../utils/deviceDetection';
 
 const ServicesPage = () => {
   const location = useLocation();
+  const appLink = getAppLink(businessInfo.playStoreLink, businessInfo.appStoreLink);
 
   useEffect(() => {
-    // Handle hash navigation
     if (location.hash) {
       const id = location.hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-      }
+        }
+      }, 100);
     }
   }, [location]);
 
@@ -43,11 +45,11 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Services Overview Grid */}
+      {/* Service Categories Overview */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {services.map((service) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {serviceCategories.map((service) => (
               <a
                 key={service.id}
                 href={`#${service.slug}`}
@@ -59,10 +61,10 @@ const ServicesPage = () => {
                       <img
                         src={service.image}
                         alt={service.name}
-                        className="w-full h-24 object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     </div>
-                    <h3 className="text-sm font-semibold text-gray-900 group-hover:text-red-600 transition-colors">
+                    <h3 className="font-semibold text-gray-900 group-hover:text-red-600 transition-colors">
                       {service.name}
                     </h3>
                   </CardContent>
@@ -77,43 +79,83 @@ const ServicesPage = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="space-y-24">
-            {services.map((service, index) => (
+            {serviceCategories.map((service, index) => (
               <div
                 key={service.id}
                 id={service.slug}
-                className={`scroll-mt-32 grid lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                }`}
+                className="scroll-mt-32"
               >
-                <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                  <div className="relative group">
-                    <div className="absolute -inset-4 bg-gradient-to-r from-red-100 to-red-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <img
-                      src={service.image}
-                      alt={service.name}
-                      className="relative w-full h-80 object-cover rounded-2xl shadow-xl group-hover:scale-[1.02] transition-transform duration-500"
-                    />
+                <div className={`grid lg:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? '' : ''}`}>
+                  <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                    <div className="relative group">
+                      <div className="absolute -inset-4 bg-gradient-to-r from-red-100 to-red-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <img
+                        src={service.image}
+                        alt={service.name}
+                        className="relative w-full h-80 object-cover rounded-2xl shadow-xl group-hover:scale-[1.02] transition-transform duration-500"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  <span className="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-medium mb-4">
-                    Service {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">{service.name}</h2>
-                  <h3 className="text-lg text-red-600 font-medium mb-4">{service.shortDesc}</h3>
-                  <div className="text-gray-600 space-y-4 mb-8">
-                    {service.description.split('\n\n').map((para, i) => (
-                      <p key={i}>{para}</p>
-                    ))}
+                  <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                    <span className="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-medium mb-4">
+                      Service {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-4">{service.name}</h2>
+                    <p className="text-gray-600 mb-8 leading-relaxed">{service.description}</p>
+                    <a href={appLink} target="_blank" rel="noopener noreferrer">
+                      <Button className="bg-red-600 hover:bg-red-700 text-white gap-2 hover:scale-105 transition-transform">
+                        Order Now
+                        <ArrowRight className="w-4 h-4" />
+                      </Button>
+                    </a>
                   </div>
-                  <a href={businessInfo.appLink} target="_blank" rel="noopener noreferrer">
-                    <Button className="bg-red-600 hover:bg-red-700 text-white gap-2 hover:scale-105 transition-transform">
-                      Order Now
-                      <ArrowRight className="w-4 h-4" />
-                    </Button>
-                  </a>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Pricing</h2>
+            <p className="text-gray-600">All prices are in KWD (Kuwaiti Dinar)</p>
+            <div className="w-20 h-1 bg-red-600 mx-auto mt-4" />
+          </div>
+
+          <div className="space-y-12">
+            {pricingData.map((category) => (
+              <Card key={category.category} className="border-0 shadow-lg overflow-hidden">
+                <div className="bg-red-600 px-6 py-4">
+                  <h3 className="text-xl font-bold text-white">{category.category}</h3>
+                </div>
+                <CardContent className="p-0">
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow className="bg-gray-50">
+                          <TableHead className="font-semibold">Item</TableHead>
+                          <TableHead className="font-semibold text-center">Dry Clean</TableHead>
+                          <TableHead className="font-semibold text-center">Wash & Iron</TableHead>
+                          <TableHead className="font-semibold text-center">Iron Only</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {category.items.map((item, index) => (
+                          <TableRow key={index} className="hover:bg-gray-50">
+                            <TableCell className="font-medium">{item.name}</TableCell>
+                            <TableCell className="text-center">{item.dryClean !== '-' ? `KWD ${item.dryClean}` : '-'}</TableCell>
+                            <TableCell className="text-center">{item.washIron !== '-' ? `KWD ${item.washIron}` : '-'}</TableCell>
+                            <TableCell className="text-center">{item.iron !== '-' ? `KWD ${item.iron}` : '-'}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
@@ -135,7 +177,7 @@ const ServicesPage = () => {
                 Call Us Now
               </Button>
             </a>
-            <a href={businessInfo.appLink} target="_blank" rel="noopener noreferrer">
+            <a href={appLink} target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
                 Download App
               </Button>

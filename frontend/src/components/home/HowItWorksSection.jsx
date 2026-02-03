@@ -9,7 +9,7 @@ const steps = [
     id: 1, 
     title: "Place an Order", 
     desc: "Use our app and place your order. You can also call us directly. Our easy-to-use interface makes scheduling your laundry pickup a breeze. Select your items, choose your preferred service, and schedule a convenient pickup time.", 
-    image: "https://i.pinimg.com/1200x/48/37/d7/4837d723a02eb118c89a0ebedebab6c9.jpg",
+    image: "https://i.pinimg.com/1200x/cd/6c/60/cd6c60566aac9468991d158551f95f7a.jpg",
     isPortrait: true
   },
   { 
@@ -147,13 +147,22 @@ const HowItWorksSection = () => {
                           }}
                         />
                         {step.isPortrait ? (
-                          /* Portrait image for Step 1 - Place an Order */
+                          /* Portrait mobile screen image for Step 1 - Taller */
                           <div className="relative flex justify-center">
-                            <img 
-                              src={step.image} 
-                              alt={step.title} 
-                              className="relative w-64 md:w-72 h-[400px] md:h-[500px] object-cover rounded-2xl shadow-xl" 
-                            />
+                            <div className="relative w-64 md:w-72 h-[480px] md:h-[560px] bg-gray-900 rounded-[2.5rem] p-2 shadow-xl">
+                              {/* Notch */}
+                              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-5 bg-gray-900 rounded-full z-10" />
+                              {/* Screen */}
+                              <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden">
+                                <img 
+                                  src={step.image} 
+                                  alt={step.title} 
+                                  className="w-full h-full object-cover" 
+                                />
+                              </div>
+                              {/* Home indicator */}
+                              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-1 bg-gray-600 rounded-full" />
+                            </div>
                           </div>
                         ) : (
                           /* Landscape images for other steps */

@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { Search, MapPin, Phone, X } from 'lucide-react';
 import { Input } from '../components/ui/input';
 import { Card, CardContent } from '../components/ui/card';
@@ -11,7 +12,6 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// Fix for default marker icon
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
@@ -20,9 +20,21 @@ L.Icon.Default.mergeOptions({
 });
 
 const BranchesPage = () => {
+  const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedBranch, setSelectedBranch] = useState(null);
   const [isMapOpen, setIsMapOpen] = useState(false);
+
+  useEffect(() => {
+    const branchId = searchParams.get('branch');
+    if (branchId) {
+      const branch = branches.find(b => b.id.toString() === branchId);
+      if (branch) {
+        setSelectedBranch(branch);
+        setIsMapOpen(true);
+      }
+    }
+  }, [searchParams]);
 
   const filteredBranches = useMemo(() => {
     if (!searchQuery.trim()) return branches;
@@ -182,6 +194,7 @@ const BranchesPage = () => {
                 </div>
                 <div className="h-80 rounded-xl overflow-hidden border border-gray-200">
                   <MapContainer
+                    key={selectedBranch.id}
                     center={[selectedBranch.lat, selectedBranch.lng]}
                     zoom={15}
                     style={{ height: '100%', width: '100%' }}

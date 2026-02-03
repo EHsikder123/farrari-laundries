@@ -71,6 +71,110 @@ async def get_status_checks():
     
     return status_checks
 
+# Contact Form Model
+class ContactForm(BaseModel):
+    name: str
+    email: str
+    phone: str
+    subject: str
+    message: str
+
+# Franchise Registration Model
+class FranchiseForm(BaseModel):
+    fullName: str
+    email: str
+    phone: str
+    country: Optional[str] = ""
+    city: Optional[str] = ""
+    investment: str
+    yearlyIncome: str
+    experience: str
+    aboutYourself: str
+    message: Optional[str] = ""
+
+@api_router.post("/contact")
+async def submit_contact(form: ContactForm):
+    try:
+        # Create email HTML
+        html_content = f"""
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> {form.name}</p>
+        <p><strong>Email:</strong> {form.email}</p>
+        <p><strong>Phone:</strong> {form.phone}</p>
+        <p><strong>Subject:</strong> {form.subject}</p>
+        <h3>Message:</h3>
+        <p>{form.message}</p>
+        """
+        
+        params = {
+            "from": "onboarding@resend.dev",
+            "to": [RECIPIENT_EMAIL],
+            "subject": f"Contact Form: {form.subject}",
+            "html": html_content
+        }
+        
+        email = resend.Emails.send(params)
+        logger.info(f"Contact form email sent: {email}")
+        
+        # Also save to database
+        doc = {
+            "id": str(uuid.uuid4()),
+            "type": "contact",
+            **form.model_dump(),
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        await db.form_submissions.insert_one(doc)
+        
+        return {"success": True, "message": "Contact form submitted successfully"}
+    except Exception as e:
+        logger.error(f"Error sending contact email: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/franchise-register")
+async def submit_franchise(form: FranchiseForm):
+    try:
+        # Create email HTML
+        html_content = f"""
+        <h2>New Franchise Registration</h2>
+        <p><strong>Full Name:</strong> {form.fullName}</p>
+        <p><strong>Email:</strong> {form.email}</p>
+        <p><strong>Phone:</strong> {form.phone}</p>
+        <p><strong>Country:</strong> {form.country}</p>
+        <p><strong>City:</strong> {form.city}</p>
+        <p><strong>Investment Capacity:</strong> {form.investment}</p>
+        <p><strong>Yearly Income:</strong> {form.yearlyIncome}</p>
+        <h3>Business Experience:</h3>
+        <p>{form.experience}</p>
+        <h3>About Themselves:</h3>
+        <p>{form.aboutYourself}</p>
+        <h3>Additional Message:</h3>
+        <p>{form.message}</p>
+        """
+        
+        params = {
+            "from": "onboarding@resend.dev",
+            "to": [RECIPIENT_EMAIL],
+            "subject": f"Franchise Registration: {form.fullName}",
+            "html": html_content
+        }
+        
+        email = resend.Emails.send(params)
+        logger.info(f"Franchise form email sent: {email}")
+        
+        # Also save to database
+        doc = {
+            "id": str(uuid.uuid4()),
+            "type": "franchise",
+            **form.model_dump(),
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        await db.form_submissions.insert_one(doc)
+        
+        return {"success": True, "message": "Franchise registration submitted successfully"}
+    except Exception as e:
+        logger.error(f"Error sending franchise email: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Include the router in the main app
 app.include_router(api_router)
 

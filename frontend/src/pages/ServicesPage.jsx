@@ -20,10 +20,38 @@ const ServicesPage = () => {
   const pricingRef = useRef(null);
 
   const serviceCategories = [
-    { id: 1, name: "Free Pickup & Delivery", slug: "free-pickup-delivery", description: "Enjoy the convenience of our free pickup and delivery service. We come to your doorstep to collect and return your garments, making laundry effortless.", image: "https://i.pinimg.com/1200x/98/11/08/981108d894b3215ced599b67a1b2a496.jpg", hasPricing: false },
-    { id: 2, name: "Wash & Iron", slug: "wash-iron", description: "Our wash and iron service provides thorough cleaning and professional pressing for your everyday garments. We use premium detergents and state-of-the-art equipment.", image: "https://images.unsplash.com/photo-1635274605638-d44babc08a4f?w=800&q=90", hasPricing: true },
-    { id: 3, name: "Iron", slug: "iron", description: "Professional ironing and pressing service to give your clothes that crisp, polished look. Our skilled staff uses commercial-grade equipment.", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=90", hasPricing: true },
-    { id: 4, name: "Dry Clean", slug: "dry-clean", description: "Expert dry cleaning for delicate fabrics and special garments. Our advanced dry cleaning process safely removes stains without water damage.", image: "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=800&q=90", hasPricing: true }
+    { 
+      id: 1, 
+      name: "Free Pickup & Delivery", 
+      slug: "free-pickup-delivery", 
+      description: "Enjoy the ultimate convenience with our free pickup and delivery service. We come to your home or office to collect your garments and return them fresh and clean. Organized via our app, WhatsApp, or phone with multi-pickup routes and convenient time windows. Our drivers are trained to be polite, presentable, and respectful.", 
+      image: "https://i.pinimg.com/1200x/98/11/08/981108d894b3215ced599b67a1b2a496.jpg", 
+      hasPricing: false 
+    },
+    { 
+      id: 2, 
+      name: "Wash & Iron", 
+      slug: "wash-iron", 
+      description: "Our regular laundry service covers daily wear like shirts, t-shirts, trousers, jeans, pajamas, and children's clothes. Workflow includes pickup & tagging, sorting, washing with premium detergents, drying, folding/hanging, and professional packaging. Usually next-day or 48-hour turnaround. KPIs: Cleanliness, no color bleeding, fresh smell.", 
+      image: "https://images.unsplash.com/photo-1635274605638-d44babc08a4f?w=800&q=90", 
+      hasPricing: true 
+    },
+    { 
+      id: 3, 
+      name: "Iron", 
+      slug: "iron", 
+      description: "Professional ironing and pressing service for washed garments from Farrari or customer-washed clothes. Our workflow includes setting proper temperature per fabric, careful ironing, hanging/folding, and quality packaging. KPIs: No burn marks, minimal creases, proper shoulder shaping on shirts. Starching available for shirts, kandoras, and uniforms.", 
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=90", 
+      hasPricing: true 
+    },
+    { 
+      id: 4, 
+      name: "Dry Clean", 
+      slug: "dry-clean", 
+      description: "Expert dry cleaning for suits, dresses, jackets, delicate fabrics, abayas, kandoras, and high-end clothing. Process includes garment inspection, pre-spotting, dry-cleaning with premium solvents, pressing & finishing, and hanging with cover packaging. KPIs: Shape retention, no shrinkage, no color fading, professional pressing.", 
+      image: "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=800&q=90", 
+      hasPricing: true 
+    }
   ];
 
   useEffect(() => {
@@ -85,7 +113,7 @@ const ServicesPage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className={`max-w-3xl mx-auto text-center text-white transition-all duration-1000 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
-            <p className="text-xl text-white/90">Professional laundry and dry cleaning services for all your needs.</p>
+            <p className="text-xl text-white/90">Professional laundry and dry cleaning services using state-of-the-art equipment and premium detergents.</p>
           </div>
         </div>
       </section>
@@ -150,8 +178,35 @@ const ServicesPage = () => {
         </div>
       </section>
 
+      {/* Additional Services */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Additional Services</h2>
+            <div className="w-20 h-1 bg-red-600 mx-auto" />
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {[
+              { title: "Stain Removal", desc: "Professional treatment for food/oil, ink, makeup, and sweat stains." },
+              { title: "Carpets & Curtains", desc: "Specialist cleaning for carpets, curtains, drapes, and sofa covers." },
+              { title: "Special Clothing", desc: "Expert care for abayas, kandoras, wedding dresses, and branded items." },
+              { title: "Bags & Shoes", desc: "Cleaning and restoration for bags and shoes of all types." },
+              { title: "Express Service", desc: "Same-day or next-day turnaround with priority handling." },
+              { title: "FarrariGo Subscription", desc: "Monthly subscription plans for regular laundry users." }
+            ].map((item, index) => (
+              <Card key={item.title} className="border-0 shadow-md hover:shadow-lg transition-all">
+                <CardContent className="p-6">
+                  <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
+                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Pricing */}
-      <section ref={pricingRef} className="py-20 bg-gray-50">
+      <section ref={pricingRef} className="py-20">
         <div className="container mx-auto px-4">
           <div className={`text-center mb-12 transition-all duration-1000 ${pricingVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Pricing</h2>

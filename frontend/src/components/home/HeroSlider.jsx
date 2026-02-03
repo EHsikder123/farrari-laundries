@@ -18,31 +18,47 @@ const HeroSlider = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 4);
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
     return () => clearInterval(timer);
   }, []);
 
-  const nextSlide = useCallback(() => setCurrentSlide((prev) => (prev + 1) % 4), []);
-  const prevSlide = useCallback(() => setCurrentSlide((prev) => (prev - 1 + 4) % 4), []);
+  const nextSlide = useCallback(() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length), []);
+  const prevSlide = useCallback(() => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length), []);
 
   return (
-    <section className="relative h-[80vh] min-h-[600px] overflow-hidden pt-20">
+    <section className="relative h-[80vh] min-h-[600px] overflow-hidden pt-20" data-testid="hero-slider">
       {heroSlides.map((slide, index) => (
-        <div key={slide.id} className={`absolute inset-0 transition-all duration-1000 ${index === currentSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}>
+        <div 
+          key={slide.id} 
+          className={`absolute inset-0 transition-all duration-1000 ${index === currentSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}
+        >
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent z-10" />
           <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 z-20 flex items-center">
             <div className="container mx-auto px-4">
               <div className={`max-w-2xl transition-all duration-1000 delay-300 ${index === currentSlide ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">{slide.title}</h1>
-                <p className="text-xl md:text-2xl text-white/90 mb-8 pr-12 md:pr-0">{slide.subtitle}</p>
-                <div className="flex flex-wrap gap-4">
+                <p className="text-xl md:text-2xl text-white/90 mb-8 pr-4 md:pr-0">{slide.subtitle}</p>
+                <div className="flex flex-wrap gap-4 pb-16 md:pb-0">
                   <a href={appLink} target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-6 hover:scale-105 transition-transform">Order Now</Button>
+                    <Button 
+                      size="lg" 
+                      className="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-6 hover:scale-105 transition-transform"
+                      data-testid={`hero-order-btn-${index}`}
+                    >
+                      Order Now
+                    </Button>
                   </a>
                   <Link to="/services">
-                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-6">Our Services</Button>
+                    <Button 
+                      size="lg" 
+                      variant="outline" 
+                      className="border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-6"
+                      data-testid={`hero-services-btn-${index}`}
+                    >
+                      Our Services
+                    </Button>
                   </Link>
                 </div>
               </div>
@@ -50,11 +66,32 @@ const HeroSlider = () => {
           </div>
         </div>
       ))}
-      <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/40 transition-all"><ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" /></button>
-      <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/40 transition-all"><ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" /></button>
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-        {[0, 1, 2, 3].map((i) => (
-          <button key={i} onClick={() => setCurrentSlide(i)} className={`w-3 h-3 rounded-full transition-all duration-300 ${i === currentSlide ? 'bg-red-600 w-8' : 'bg-white/50 hover:bg-white/80'}`} />
+      
+      {/* Navigation Arrows */}
+      <button 
+        onClick={prevSlide} 
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/40 transition-all"
+        data-testid="hero-prev-btn"
+      >
+        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
+      </button>
+      <button 
+        onClick={nextSlide} 
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/40 transition-all"
+        data-testid="hero-next-btn"
+      >
+        <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
+      </button>
+      
+      {/* Slide Indicators - Positioned higher on mobile to avoid text overlap */}
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+        {heroSlides.map((_, i) => (
+          <button 
+            key={i} 
+            onClick={() => setCurrentSlide(i)} 
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${i === currentSlide ? 'bg-red-600 w-8' : 'bg-white/50 hover:bg-white/80'}`}
+            data-testid={`hero-indicator-${i}`}
+          />
         ))}
       </div>
     </section>

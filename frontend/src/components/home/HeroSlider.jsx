@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Link } from 'react-router-dom';
 import { businessInfo, heroSlides } from '../../data/mockData';
+import { isIOS, getAppLink } from '../../utils/deviceDetection';
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -22,13 +23,15 @@ const HeroSlider = () => {
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
   }, []);
 
+  const appLink = getAppLink(businessInfo.playStoreLink, businessInfo.appStoreLink);
+
   return (
     <section className="relative h-[80vh] min-h-[600px] overflow-hidden pt-20">
       {heroSlides.map((slide, index) => (
         <div
           key={slide.id}
           className={`absolute inset-0 transition-all duration-1000 ${
-            index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+            index === currentSlide ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'
           }`}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent z-10" />
@@ -49,11 +52,11 @@ const HeroSlider = () => {
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
                   {slide.title}
                 </h1>
-                <p className="text-xl md:text-2xl text-white/90 mb-8">
+                <p className="text-xl md:text-2xl text-white/90 mb-8 pr-12 md:pr-0">
                   {slide.subtitle}
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <a href={businessInfo.appLink} target="_blank" rel="noopener noreferrer">
+                  <a href={appLink} target="_blank" rel="noopener noreferrer">
                     <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-6 hover:scale-105 transition-transform">
                       Order Now
                     </Button>
@@ -72,15 +75,15 @@ const HeroSlider = () => {
 
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/40 transition-all duration-300 hover:scale-110"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/40 transition-all duration-300 hover:scale-110"
       >
-        <ChevronLeft className="w-6 h-6 text-white" />
+        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/40 transition-all duration-300 hover:scale-110"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/40 transition-all duration-300 hover:scale-110"
       >
-        <ChevronRight className="w-6 h-6 text-white" />
+        <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
       </button>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2">

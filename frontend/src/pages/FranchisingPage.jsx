@@ -8,7 +8,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
-import { franchiseData, businessInfo } from '../data/mockData';
+import { franchiseData } from '../data/mockData';
 import { toast } from '../hooks/use-toast';
 import { Toaster } from '../components/ui/toaster';
 
@@ -23,7 +23,9 @@ const FranchisingPage = () => {
     country: '',
     city: '',
     investment: '',
+    yearlyIncome: '',
     experience: '',
+    aboutYourself: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -67,7 +69,9 @@ const FranchisingPage = () => {
           country: '',
           city: '',
           investment: '',
+          yearlyIncome: '',
           experience: '',
+          aboutYourself: '',
           message: ''
         });
       } else {
@@ -85,7 +89,7 @@ const FranchisingPage = () => {
   };
 
   const renderContent = (content) => {
-    return content.split('\n\n').map((para, i) => {
+    return content.split('\\n\\n').map((para, i) => {
       if (para.startsWith('**') && para.includes('**')) {
         const parts = para.split('**');
         return (
@@ -100,13 +104,13 @@ const FranchisingPage = () => {
           </div>
         );
       }
-      if (para.startsWith('•')) {
+      if (para.startsWith('\u2022')) {
         return (
           <ul key={i} className="list-none space-y-2 mb-4">
-            {para.split('\n').map((item, j) => (
+            {para.split('\\n').map((item, j) => (
               <li key={j} className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                <span>{item.replace('• ', '')}</span>
+                <span>{item.replace('\u2022 ', '')}</span>
               </li>
             ))}
           </ul>
@@ -242,46 +246,69 @@ const FranchisingPage = () => {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="country">Country *</Label>
+                        <Label htmlFor="country">Country</Label>
                         <Input
                           id="country"
                           name="country"
                           value={formData.country}
                           onChange={handleInputChange}
-                          required
                           className="mt-2"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="city">City *</Label>
+                        <Label htmlFor="city">City</Label>
                         <Input
                           id="city"
                           name="city"
                           value={formData.city}
                           onChange={handleInputChange}
-                          required
                           className="mt-2"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="investment">Investment Capacity (USD)</Label>
+                        <Label htmlFor="investment">Investment Capacity (USD) *</Label>
                         <Input
                           id="investment"
                           name="investment"
                           value={formData.investment}
                           onChange={handleInputChange}
+                          required
+                          className="mt-2"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="yearlyIncome">Yearly Income (USD) *</Label>
+                        <Input
+                          id="yearlyIncome"
+                          name="yearlyIncome"
+                          value={formData.yearlyIncome}
+                          onChange={handleInputChange}
+                          required
                           className="mt-2"
                         />
                       </div>
                     </div>
                     <div>
-                      <Label htmlFor="experience">Business Experience</Label>
+                      <Label htmlFor="experience">Business Experience *</Label>
                       <Textarea
                         id="experience"
                         name="experience"
                         value={formData.experience}
                         onChange={handleInputChange}
                         rows={3}
+                        required
+                        className="mt-2"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="aboutYourself">Tell Us About Yourself *</Label>
+                      <Textarea
+                        id="aboutYourself"
+                        name="aboutYourself"
+                        value={formData.aboutYourself}
+                        onChange={handleInputChange}
+                        rows={4}
+                        required
                         className="mt-2"
                       />
                     </div>

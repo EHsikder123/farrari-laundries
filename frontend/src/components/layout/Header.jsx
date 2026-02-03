@@ -3,11 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import { businessInfo } from '../../data/mockData';
 import { Button } from '../ui/button';
+import { getAppLink } from '../../utils/deviceDetection';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const appLink = getAppLink(businessInfo.playStoreLink, businessInfo.appStoreLink);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,7 +103,7 @@ const Header = () => {
                 WhatsApp
               </Button>
             </a>
-            <a href={businessInfo.appLink} target="_blank" rel="noopener noreferrer">
+            <a href={appLink} target="_blank" rel="noopener noreferrer">
               <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white gap-2">
                 Order Now
               </Button>
@@ -156,7 +158,7 @@ const Header = () => {
                   WhatsApp
                 </Button>
               </a>
-              <a href={businessInfo.appLink} target="_blank" rel="noopener noreferrer" className="w-full">
+              <a href={appLink} target="_blank" rel="noopener noreferrer" className="w-full">
                 <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
                   Order Now
                 </Button>

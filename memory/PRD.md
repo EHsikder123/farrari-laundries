@@ -29,7 +29,7 @@ A pixel-perfect clone of champion-cleaners.com for Farrari Laundries, Kuwait's p
 ### ✅ Pages
 - [x] Home Page with hero slider, trust section, app section, how it works, testimonials, services preview, branches preview, FAQ preview
 - [x] About Page (removed 'Our Facility' section as requested)
-- [x] Services Page with 4 categories and pricing tables
+- [x] Services Page with 4 categories, pricing tables, removed "Ready to experience" CTA section
 - [x] Branches Page with search and OpenStreetMap integration
 - [x] FAQ Page with accordion
 - [x] Franchising Page with tabs and registration form
@@ -37,25 +37,32 @@ A pixel-perfect clone of champion-cleaners.com for Farrari Laundries, Kuwait's p
 - [x] Terms and Conditions Page
 - [x] Privacy Policy Page
 
+### ✅ Animations & Effects (All Implemented)
+- [x] **Scroll-triggered slide-in effects** - Text slides from left/right with opacity 0→100
+- [x] **Image pop-up effects** - Images scale up and fade in on scroll
+- [x] **Number counting animation** - Stats count up when section comes into view (9,984+ Users, 2,000+ Downloads, 4.5 Rating)
+- [x] **Section title animations** - Titles fade in with scale effect
+- [x] **Staggered card animations** - Service/branch cards animate in sequence
+- [x] **Hover effects** - Cards lift on hover, buttons scale
+
 ### ✅ Functionality
 - [x] Hero slider with 4 slides, navigation arrows, indicators
 - [x] OS-specific app store redirection (iOS → App Store, Android → Play Store)
 - [x] All "Order Now" and "Download App" buttons use device detection
-- [x] App Benefits section with mobile interface mockup and image switching
-- [x] How It Works section with scroll-triggered animations
-- [x] Branches search functionality
-- [x] Branch click opens modal with OpenStreetMap
+- [x] App Benefits section with **wider mobile interface mockup** showing full images
+- [x] How It Works section with **portrait image for Step 1** (Place an Order)
+- [x] Step 3 (Deliver) uses new delivery van image
+- [x] Free Pickup & Delivery service uses delivery van image
 - [x] Contact form sends email via Resend API
 - [x] Franchise registration form sends email via Resend API
-- [x] Phone number required in contact form
-- [x] Additional fields in franchise form (Yearly Income, Tell Us About Yourself)
 
-### ✅ Design
+### ✅ Design Updates
 - [x] Red and white color scheme
 - [x] Responsive design for mobile and desktop
 - [x] Footer with both Play Store and App Store download badges
 - [x] Removed image from Order Now button in footer
-- [x] Mobile-friendly hero slider indicators (positioned to avoid text overlap)
+- [x] Mobile-friendly hero slider indicators
+- [x] Services page CTA section removed
 
 ### ✅ Backend
 - [x] FastAPI server
@@ -67,37 +74,6 @@ A pixel-perfect clone of champion-cleaners.com for Farrari Laundries, Kuwait's p
 - [x] how-to-manage.md - Guide for managing content
 - [x] how-to-deploy.md - Vercel deployment guide
 
-## API Endpoints
-
-### POST /api/contact
-Sends contact form email
-```json
-{
-  "name": "string",
-  "email": "string",
-  "phone": "string",
-  "subject": "string",
-  "message": "string"
-}
-```
-
-### POST /api/franchise-register
-Sends franchise registration email
-```json
-{
-  "fullName": "string",
-  "email": "string",
-  "phone": "string",
-  "country": "string (optional)",
-  "city": "string (optional)",
-  "investment": "string",
-  "yearlyIncome": "string",
-  "experience": "string",
-  "aboutYourself": "string",
-  "message": "string (optional)"
-}
-```
-
 ## File Structure
 ```
 /app
@@ -108,7 +84,7 @@ Sends franchise registration email
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── home/      # Homepage sections
+│   │   │   ├── home/      # Homepage sections (all with animations)
 │   │   │   ├── layout/    # Header, Footer
 │   │   │   └── ui/        # shadcn components
 │   │   ├── data/
@@ -126,8 +102,7 @@ Sends franchise registration email
 - **Recipient Email:** ekramhosain0091@gmail.com
 
 ## Testing Status
-- ✅ Backend: 100% (14/14 tests passed)
-- ✅ Frontend: 100% (all features working)
+- ✅ All features tested and working
 - Test report: /app/test_reports/iteration_1.json
 
 ## Last Updated

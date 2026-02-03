@@ -15,10 +15,10 @@ const HomePage = () => {
     <div className="min-h-screen bg-white">
       <Header />
       <HeroSlider />
-      <TestimonialsSection />
       <TrustSection />
       <AppSection />
       <HowItWorksSection />
+      <TestimonialsSection />
       <ServicesSection />
       <BranchesPreview />
       <FAQPreview />

@@ -31,6 +31,10 @@ const Footer = () => {
       <div className="bg-red-600 py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <h3 className="text-xl font-bold text-white mb-2">Download Our App</h3>
+              <p className="text-white/80 text-sm">Get the best laundry experience on your phone</p>
+            </div>
             <div className="flex items-center gap-4">
               <a href={businessInfo.playStoreLink} target="_blank" rel="noopener noreferrer">
                 <img

@@ -168,40 +168,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Gallery */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Facility</h2>
-            <div className="w-20 h-1 bg-red-600 mx-auto" />
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="overflow-hidden rounded-2xl shadow-lg group">
-              <img
-                src="https://images.pexels.com/photos/8774643/pexels-photo-8774643.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="Facility 1"
-                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-            </div>
-            <div className="overflow-hidden rounded-2xl shadow-lg group">
-              <img
-                src="https://images.pexels.com/photos/8774367/pexels-photo-8774367.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="Facility 2"
-                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-            </div>
-            <div className="overflow-hidden rounded-2xl shadow-lg group">
-              <img
-                src="https://images.pexels.com/photos/8774512/pexels-photo-8774512.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="Facility 3"
-                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );

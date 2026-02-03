@@ -242,7 +242,7 @@ const ContactPage = () => {
               <Card className="border-0 shadow-xl">
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6" data-testid="contact-form">
                     <div>
                       <Label htmlFor="name">Full Name *</Label>
                       <Input
@@ -252,6 +252,7 @@ const ContactPage = () => {
                         onChange={handleInputChange}
                         required
                         className="mt-2"
+                        data-testid="contact-name"
                       />
                     </div>
                     <div className="grid md:grid-cols-2 gap-4">
@@ -265,6 +266,7 @@ const ContactPage = () => {
                           onChange={handleInputChange}
                           required
                           className="mt-2"
+                          data-testid="contact-email"
                         />
                       </div>
                       <div>
@@ -276,6 +278,7 @@ const ContactPage = () => {
                           onChange={handleInputChange}
                           required
                           className="mt-2"
+                          data-testid="contact-phone"
                         />
                       </div>
                     </div>
@@ -288,6 +291,7 @@ const ContactPage = () => {
                         onChange={handleInputChange}
                         required
                         className="mt-2"
+                        data-testid="contact-subject"
                       />
                     </div>
                     <div>
@@ -300,12 +304,14 @@ const ContactPage = () => {
                         rows={6}
                         required
                         className="mt-2"
+                        data-testid="contact-message"
                       />
                     </div>
                     <Button
                       type="submit"
                       disabled={isSubmitting}
                       className="w-full bg-red-600 hover:bg-red-700 text-white py-6 gap-2"
+                      data-testid="contact-submit"
                     >
                       {isSubmitting ? 'Sending...' : 'Send Message'}
                       <Send className="w-4 h-4" />

@@ -22,7 +22,7 @@ export const businessInfo = {
 export const appBenefitImages = {
   gift: "https://i.pinimg.com/1200x/20/44/cd/2044cd707ec7ae49ef0d02c0e3ed134b.jpg",
   promos: "https://i.pinimg.com/1200x/14/ad/9c/14ad9c009ee5a1838a6b263431617f30.jpg",
-  cashless: "https://i.pinimg.com/1200x/48/37/d7/4837d723a02eb118c89a0ebedebab6c9.jpg",
+  cashless: "https://static.prod-images.emergentagent.com/jobs/6ed4a35f-22a4-4dbd-ba13-972212f8c779/images/7886d6b4c42131e8a4b279072f8fc550061eef73e7f5369c9e5ed90e17708d53.png",
   rewards: "https://i.pinimg.com/1200x/f3/9f/d7/f39fd778cc43c2a3ddeb76c4dfd4ba34.jpg"
 };
 

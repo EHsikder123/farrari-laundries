@@ -112,28 +112,28 @@ const AppSection = () => {
         <div className="container mx-auto px-4">
           <h2 className={`text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>Our Apps Benefit</h2>
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            {/* Mobile Frame - On top for mobile, on right for desktop */}
+            {/* Mobile Frame - Taller and narrower for full image visibility */}
             <div className="order-1 lg:order-2 flex justify-center">
               <div className={`relative transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
-                {/* Wider Mobile Frame for full image visibility */}
-                <div className="relative w-80 md:w-96 h-[600px] md:h-[700px] bg-gray-900 rounded-[3rem] p-2 shadow-2xl">
+                {/* Taller Mobile Frame */}
+                <div className="relative w-72 md:w-80 h-[600px] md:h-[680px] bg-gray-900 rounded-[3rem] p-2 shadow-2xl">
                   {/* Notch */}
-                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-6 bg-gray-900 rounded-full z-10" />
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-6 bg-gray-900 rounded-full z-10" />
                   {/* Screen */}
                   <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
                     <img 
                       src={appBenefitImages[selectedBenefit]} 
                       alt="App Feature" 
-                      className="w-full h-full object-contain bg-gray-100 transition-all duration-500" 
+                      className="w-full h-full object-cover transition-all duration-500" 
                     />
                   </div>
                   {/* Home indicator */}
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-28 h-1 bg-gray-600 rounded-full" />
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gray-600 rounded-full" />
                 </div>
               </div>
             </div>
             
-            {/* Benefit Cards - Below mobile for mobile, on left for desktop */}
+            {/* Benefit Cards */}
             <div className="order-2 lg:order-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {benefits.map((b, index) => (
                 <button 

@@ -3,7 +3,7 @@ export const businessInfo = {
   name: "Farrari Laundries",
   phone: "+965 9758 8886",
   whatsapp: "+965 9758 8886",
-  email: "info@farrarilaundries.com",
+  email: "info@farrarilife.com",
   address: "Industrial Area 3, Block D, Street 58/59, Reef Square Building, Shuwaikh, Kuwait",
   playStoreLink: "https://play.google.com/store/apps/details?id=com.cleancloudapp.farrarilaundries",
   appStoreLink: "https://apps.apple.com/ms/app/farrari-laundries/id6753220148",

@@ -19,21 +19,7 @@ L.Icon.Default.mergeOptions({
 });
 
 const branches = [
-  { id: 1, name: "Shuwaikh Main Branch", address: "Industrial Area 3, Block D, Street 58/59", phone: "+965 9758 8886", location: "Shuwaikh", lat: 29.3375, lng: 47.9774, image: "https://images.pexels.com/photos/8774643/pexels-photo-8774643.jpeg?w=600" },
-  { id: 2, name: "Kuwait City Branch", address: "Block 5, Ahmed Al Jaber Street", phone: "+965 9758 8887", location: "Kuwait City", lat: 29.3759, lng: 47.9774, image: "https://images.pexels.com/photos/8774367/pexels-photo-8774367.jpeg?w=600" },
-  { id: 3, name: "Salmiya Branch", address: "Salem Al Mubarak Street, Block 10", phone: "+965 9758 8888", location: "Salmiya", lat: 29.3347, lng: 48.0758, image: "https://images.pexels.com/photos/8774643/pexels-photo-8774643.jpeg?w=600" },
-  { id: 4, name: "Hawalli Branch", address: "Tunis Street, Block 2", phone: "+965 9758 8889", location: "Hawalli", lat: 29.3364, lng: 48.0286, image: "https://images.pexels.com/photos/8774367/pexels-photo-8774367.jpeg?w=600" },
-  { id: 5, name: "Farwaniya Branch", address: "Habib Munawer Street, Block 1", phone: "+965 9758 8890", location: "Farwaniya", lat: 29.2769, lng: 47.9581, image: "https://images.pexels.com/photos/8774643/pexels-photo-8774643.jpeg?w=600" },
-  { id: 6, name: "Jahra Branch", address: "Main Street, Block 3", phone: "+965 9758 8891", location: "Jahra", lat: 29.3375, lng: 47.6581, image: "https://images.pexels.com/photos/8774367/pexels-photo-8774367.jpeg?w=600" },
-  { id: 7, name: "Fahaheel Branch", address: "Mecca Street, Block 7", phone: "+965 9758 8892", location: "Fahaheel", lat: 29.0833, lng: 48.1333, image: "https://images.pexels.com/photos/8774643/pexels-photo-8774643.jpeg?w=600" },
-  { id: 8, name: "Mangaf Branch", address: "Street 120, Block 4", phone: "+965 9758 8893", location: "Mangaf", lat: 29.0944, lng: 48.1278, image: "https://images.pexels.com/photos/8774367/pexels-photo-8774367.jpeg?w=600" },
-  { id: 9, name: "Mahboula Branch", address: "Block 1, Street 117", phone: "+965 9758 8894", location: "Mahboula", lat: 29.1406, lng: 48.1108, image: "https://images.pexels.com/photos/8774643/pexels-photo-8774643.jpeg?w=600" },
-  { id: 10, name: "Fintas Branch", address: "Street 34, Block 5", phone: "+965 9758 8895", location: "Fintas", lat: 29.1631, lng: 48.1189, image: "https://images.pexels.com/photos/8774367/pexels-photo-8774367.jpeg?w=600" },
-  { id: 11, name: "Sabah Al Salem Branch", address: "Block 2, Street 15", phone: "+965 9758 8896", location: "Sabah Al Salem", lat: 29.2619, lng: 48.0628, image: "https://images.pexels.com/photos/8774643/pexels-photo-8774643.jpeg?w=600" },
-  { id: 12, name: "Mishref Branch", address: "Street 3, Block 1", phone: "+965 9758 8897", location: "Mishref", lat: 29.2792, lng: 48.0539, image: "https://images.pexels.com/photos/8774367/pexels-photo-8774367.jpeg?w=600" },
-  { id: 13, name: "Rumaithiya Branch", address: "Block 8, Street 80", phone: "+965 9758 8898", location: "Rumaithiya", lat: 29.3047, lng: 48.0739, image: "https://images.pexels.com/photos/8774643/pexels-photo-8774643.jpeg?w=600" },
-  { id: 14, name: "Bayan Branch", address: "Block 3, Street 1", phone: "+965 9758 8899", location: "Bayan", lat: 29.2847, lng: 48.0497, image: "https://images.pexels.com/photos/8774367/pexels-photo-8774367.jpeg?w=600" },
-  { id: 15, name: "Jabriya Branch", address: "Block 1A, Street 101", phone: "+965 9758 8900", location: "Jabriya", lat: 29.3097, lng: 48.0197, image: "https://images.pexels.com/photos/8774643/pexels-photo-8774643.jpeg?w=600" }
+  { id: 1, name: "Shuwaikh Main Branch", address: "SHUWAIKH , INDUSTRIAL AREA 3", phone: "+965 9758 8886", location: "SHUWAIKH , INDUSTRIAL AREA 3", lat: 29.319898, lng: 47.926279, image: "https://images.pexels.com/photos/8774643/pexels-photo-8774643.jpeg?w=600" },
 ];
 
 const BranchesPage = () => {

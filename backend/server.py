@@ -17,7 +17,7 @@ load_dotenv(ROOT_DIR / '.env')
 
 # Resend API key
 resend.api_key = "re_JWrMnQeS_FQc7i7tbDBCtrnFNfygankGd"
-RECIPIENT_EMAIL = "ekramhosain0091@gmail.com"
+RECIPIENT_EMAIL = "info@farrarilife.com"
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']

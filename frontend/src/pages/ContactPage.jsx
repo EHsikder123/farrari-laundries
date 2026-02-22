@@ -165,7 +165,7 @@ const ContactPage = () => {
                 <CardContent className="p-0">
                   <div className="h-80">
                     <MapContainer
-                      center={[29.3375, 47.9774]}
+                      center={[29.319898, 47.926279]}
                       zoom={13}
                       style={{ height: '100%', width: '100%' }}
                     >
@@ -173,7 +173,7 @@ const ContactPage = () => {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                       />
-                      <Marker position={[29.3375, 47.9774]}>
+                      <Marker position={[29.319898, 47.926279]}>
                         <Popup>
                           <strong>Farrari Laundries</strong>
                           <br />
